@@ -58,6 +58,16 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
         }
         
         .logo span {
@@ -309,29 +319,52 @@
             padding: 30px;
             border-radius: 5px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
+        .contact-form label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
+            margin-bottom: 15px;
         }
         
-        .form-group input,
-        .form-group textarea {
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form input[type="date"],
+        .contact-form select,
+        .contact-form textarea {
             width: 100%;
             padding: 10px;
+            margin-top: 5px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 4px;
             font-size: 16px;
         }
         
-        .form-group textarea {
-            height: 150px;
+        .contact-form .date-fields {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .contact-form .date-fields label {
+            flex: 1;
+        }
+        
+        .contact-form button {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        .contact-form button:hover {
+            background: #c0392b;
         }
         
         /* Footer */
@@ -372,6 +405,11 @@
             .hero p {
                 font-size: 18px;
             }
+            
+            .contact-form .date-fields {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -380,7 +418,10 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="logo">DevOps<span>Pro</span></div>
+            <div class="logo">
+                <img src="https://github.com/Lion-Technology-Solutions/devops-cloud-professional-profile/raw/master/profile.JPG" alt="Lion Tech Logo">
+                <span>Lion Tech</span>
+            </div>
             <nav>
                 <ul>
                     <li><a href="#about">About</a></li>
@@ -400,7 +441,7 @@
             <h1>Lion Tech</h1>
             <p>DevOps Engineer | Cloud Specialist | Automation Expert</p>
             <a href="#contact" class="btn">Hire Me</a>
-            <a href="resume.pdf" download class="btn" style="background: var(--secondary-color); margin-left: 15px;">Download Resume</a>
+            <a href="https://github.com/Lion-Technology-Solutions/devops-cloud-professional-profile/raw/master/resume.pdf" download class="btn" style="background: var(--secondary-color); margin-left: 15px;">Download Resume</a>
         </div>
     </section>
 
@@ -410,12 +451,12 @@
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Hello! I'm John, a passionate DevOps and Cloud Engineer with 5+ years of experience in designing, implementing, and managing cloud infrastructure and CI/CD pipelines.</p>
+                    <p>Hello! I'm a passionate DevOps and Cloud Engineer with 5+ years of experience in designing, implementing, and managing cloud infrastructure and CI/CD pipelines.</p>
                     <p>I specialize in automating deployment processes, optimizing system performance, and ensuring high availability of services. My expertise spans across AWS, Azure, Kubernetes, Docker, Terraform, and various DevOps tools.</p>
                     <p>I'm currently looking for new opportunities where I can leverage my skills to help organizations achieve their cloud and automation goals.</p>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Lion Tech">
+                    <img src="https://github.com/Lion-Technology-Solutions/devops-cloud-professional-profile/raw/master/profile.JPG" alt="Lion Tech Profile">
                 </div>
             </div>
         </div>
@@ -660,24 +701,75 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                    <form action="https://formspree.io/f/xwpqnbae" method="POST">
+                        <h2>Hire Me Form</h2>
+                        
+                        <label>
+                            Your Name:
+                            <input type="text" name="name" required>
+                        </label>
+                        
+                        <label>
+                            Your Email:
+                            <input type="email" name="email" required>
+                        </label>
+                        
+                        <label>
+                            Company/Organization:
+                            <input type="text" name="company" required>
+                        </label>
+                        
+                        <label>
+                            Job/Project Title:
+                            <input type="text" name="job_title" required>
+                        </label>
+                        
+                        <label>
+                            Opportunity Type:
+                            <select name="opportunity_type" required>
+                                <option value="">-- Select One --</option>
+                                <option value="full-time">Full-time Employment</option>
+                                <option value="part-time">Part-time Employment</option>
+                                <option value="contract">Contract Work</option>
+                                <option value="freelance">Freelance Project</option>
+                                <option value="internship">Internship</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </label>
+                        
+                        <label>
+                            Job Location:
+                            <input type="text" name="job_location" placeholder="City, Country or Remote" required>
+                        </label>
+                        
+                        <div class="date-fields">
+                            <label>
+                                Expected Start Date:
+                                <input type="date" name="start_date" required>
+                            </label>
+                            
+                            <label>
+                                Expected End Date (if applicable):
+                                <input type="date" name="end_date">
+                            </label>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        
+                        <label>
+                            Project/Position Description:
+                            <textarea name="description" rows="5" required></textarea>
+                        </label>
+                        
+                        <label>
+                            Budget/Salary Range (optional):
+                            <input type="text" name="compensation" placeholder="e.g., $50,000-$60,000 or $50/hr">
+                        </label>
+                        
+                        <label>
+                            How did you hear about me? (optional):
+                            <input type="text" name="referral_source">
+                        </label>
+                        
+                        <button type="submit">Submit Opportunity</button>
                     </form>
                 </div>
             </div>
@@ -698,13 +790,6 @@
     </footer>
 
     <script>
-        // Simple form handling (in a real site, you'd connect this to a backend)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! In a real implementation, this would be sent to a server.');
-            this.reset();
-        });
-        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
