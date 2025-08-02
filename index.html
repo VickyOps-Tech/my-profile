@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lion Tech | DevOps & Cloud Engineer</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: var(--secondary-color);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+        }
+        
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+        
+        section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+            color: var(--secondary-color);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-info {
+            padding: 20px;
+        }
+        
+        .project-info h3 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .project-tag {
+            background: var(--light-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        /* Certifications Section */
+        .certifications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .certification-card {
+            background: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .certification-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+        }
+        
+        .certification-info h3 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .certification-info p {
+            color: #666;
+        }
+        
+        /* Job Preferences Section */
+        .preferences-container {
+            background: white;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .preference-item {
+            margin-bottom: 30px;
+        }
+        
+        .preference-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">DevOps<span>Pro</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#preferences">Preferences</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Lion Tech</h1>
+            <p>DevOps Engineer | Cloud Specialist | Automation Expert</p>
+            <a href="#contact" class="btn">Hire Me</a>
+            <a href="resume.pdf" download class="btn" style="background: var(--secondary-color); margin-left: 15px;">Download Resume</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm John, a passionate DevOps and Cloud Engineer with 5+ years of experience in designing, implementing, and managing cloud infrastructure and CI/CD pipelines.</p>
+                    <p>I specialize in automating deployment processes, optimizing system performance, and ensuring high availability of services. My expertise spans across AWS, Azure, Kubernetes, Docker, Terraform, and various DevOps tools.</p>
+                    <p>I'm currently looking for new opportunities where I can leverage my skills to help organizations achieve their cloud and automation goals.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Lion Tech">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section-skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>Cloud Platforms</h3>
+                    <ul>
+                        <li>AWS (EC2, S3, Lambda, RDS, ECS, EKS)</li>
+                        <li>Azure (VMs, App Services, AKS, Functions)</li>
+                        <li>Google Cloud Platform</li>
+                        <li>Serverless Architectures</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>DevOps Tools</h3>
+                    <ul>
+                        <li>Docker & Kubernetes</li>
+                        <li>Terraform & CloudFormation</li>
+                        <li>Ansible & Chef</li>
+                        <li>Jenkins, GitHub Actions, CircleCI</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Monitoring & Logging</h3>
+                    <ul>
+                        <li>Prometheus & Grafana</li>
+                        <li>ELK Stack (Elasticsearch, Logstash, Kibana)</li>
+                        <li>CloudWatch & Azure Monitor</li>
+                        <li>New Relic & Datadog</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Programming & Scripting</h3>
+                    <ul>
+                        <li>Python & Bash Scripting</li>
+                        <li>Node.js & Go (Basic)</li>
+                        <li>YAML, JSON, HCL</li>
+                        <li>Git & Version Control</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="CI/CD Pipeline">
+                    </div>
+                    <div class="project-info">
+                        <h3>Automated CI/CD Pipeline</h3>
+                        <p>Designed and implemented a fully automated CI/CD pipeline using Jenkins, Docker, and Kubernetes that reduced deployment time by 80%.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Jenkins</span>
+                            <span class="project-tag">Docker</span>
+                            <span class="project-tag">Kubernetes</span>
+                            <span class="project-tag">AWS</span>
+                        </div>
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Cloud Migration">
+                    </div>
+                    <div class="project-info">
+                        <h3>Legacy System Cloud Migration</h3>
+                        <p>Migrated on-premise infrastructure to AWS with zero downtime, resulting in 40% cost savings and improved scalability.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">AWS</span>
+                            <span class="project-tag">Terraform</span>
+                            <span class="project-tag">Migration</span>
+                            <span class="project-tag">Ansible</span>
+                        </div>
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Monitoring System">
+                    </div>
+                    <div class="project-info">
+                        <h3>Centralized Monitoring System</h3>
+                        <p>Implemented Prometheus and Grafana monitoring stack with custom dashboards that improved system visibility and reduced MTTR by 60%.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Prometheus</span>
+                            <span class="project-tag">Grafana</span>
+                            <span class="project-tag">Alerting</span>
+                            <span class="project-tag">Kubernetes</span>
+                        </div>
+                        <a href="#">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="section-certifications">
+        <div class="container">
+            <h2>Certifications & Training</h2>
+            <div class="certifications-container">
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="certification-info">
+                        <h3>AWS Certified Solutions Architect - Professional</h3>
+                        <p>Amazon Web Services | 2022</p>
+                        <p>Validation of advanced technical skills and experience in designing distributed applications on AWS.</p>
+                    </div>
+                </div>
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certification-info">
+                        <h3>Certified Kubernetes Administrator (CKA)</h3>
+                        <p>Cloud Native Computing Foundation | 2021</p>
+                        <p>Demonstrated ability to perform the responsibilities of a Kubernetes administrator.</p>
+                    </div>
+                </div>
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="certification-info">
+                        <h3>Microsoft Certified: Azure DevOps Engineer Expert</h3>
+                        <p>Microsoft | 2020</p>
+                        <p>Proven expertise in combining people, processes, and technologies to deliver valuable products and services.</p>
+                    </div>
+                </div>
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="certification-info">
+                        <h3>Hashicorp Certified: Terraform Associate</h3>
+                        <p>Hashicorp | 2021</p>
+                        <p>Validated knowledge of infrastructure as code principles and Terraform basics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Preferences Section -->
+    <section id="preferences" class="section-preferences">
+        <div class="container">
+            <h2>Job Preferences</h2>
+            <div class="preferences-container">
+                <div class="preference-item">
+                    <h3>Role Types</h3>
+                    <ul>
+                        <li>DevOps Engineer</li>
+                        <li>Site Reliability Engineer (SRE)</li>
+                        <li>Cloud Engineer</li>
+                        <li>Platform Engineer</li>
+                    </ul>
+                </div>
+                <div class="preference-item">
+                    <h3>Employment Types</h3>
+                    <ul>
+                        <li>Full-time</li>
+                        <li>Contract (6+ months)</li>
+                        <li>Remote or Hybrid</li>
+                    </ul>
+                </div>
+                <div class="preference-item">
+                    <h3>Technologies I Enjoy Working With</h3>
+                    <ul>
+                        <li>Kubernetes and container orchestration</li>
+                        <li>Infrastructure as Code (Terraform, Pulumi)</li>
+                        <li>CI/CD pipeline design and optimization</li>
+                        <li>Cloud-native application development</li>
+                    </ul>
+                </div>
+                <div class="preference-item">
+                    <h3>Company Values I Appreciate</h3>
+                    <ul>
+                        <li>Strong engineering culture</li>
+                        <li>Investment in professional development</li>
+                        <li>Work-life balance</li>
+                        <li>Modern tech stack</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>liontechacademy@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 647 381 8836</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Lagos, Nigeria (Open to Remote)</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>Availability</h3>
+                            <p>Available for new opportunities starting immediately</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-dev"></i></a>
+            </div>
+            <p>&copy; 2025 Lion Tech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple form handling (in a real site, you'd connect this to a backend)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! In a real implementation, this would be sent to a server.');
+            this.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
