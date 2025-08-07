@@ -1,0 +1,54 @@
+name: Deploy to S3
+
+on:
+  pull_request:
+    branches: [ master ]
+    paths:
+      - 'index.html'
+  push:
+    branches: [ master ]
+    paths:
+      - 'index.html'
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code with full history
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Required to get changed files list
+      
+      - name: Verify only index.html is changed
+        run: |
+          # Get list of changed files
+          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+          echo "Changed files: $CHANGED_FILES"
+          
+          # Count changed files that aren't index.html
+          OTHER_CHANGES=$(echo "$CHANGED_FILES" | grep -v '^index.html$' | wc -l)
+          
+          if [ "$OTHER_CHANGES" -ne 0 ]; then
+            echo "::error::Only index.html file changes are allowed in this PR"
+            exit 1
+          fi
+
+  deploy:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ca-central-1
+
+      - name: Upload to S3
+        run: |
+          aws s3 cp index.html s3://elvis-lavert-devops-cloud-engineer/index.html
+          echo "Deployed index.html to S3 bucket"
