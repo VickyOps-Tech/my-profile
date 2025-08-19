@@ -1,7 +1,7 @@
 name: Deploy to S3
 
 on:
-  pull_request:
+  pull_request: 
     branches: [ master ]
     paths:
       - 'index.html'
@@ -46,9 +46,9 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ca-central-1
+          aws-region: us-east-2 # Update to your AWS region
 
       - name: Upload to S3
         run: |
-          aws s3 cp index.html s3://queen-project/index.html
+          aws s3 cp index.html s3://vickyops-bucket/index.html
           echo "Deployed index.html to S3 bucket"

@@ -21,10 +21,5 @@ This is a complete static website template for a DevOps and Cloud Engineer looki
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Lion-Technology-Solutions/devops-cloud-professional-profile.git
-   cd devops-cloud-professional-profile    
-
-
-
-
-   #  https://github.com/Lion-Technology-Solutions/devops-cloud-professional-profile/blob/master/AUGUST%202ND%20AND%203RD%20-%20GIT%20-%20SCM.pdf
+   git clone https://github.com/victorblinks/devops-cloud-professional-profile.git
+   cd devops-cloud-professional-profile.
