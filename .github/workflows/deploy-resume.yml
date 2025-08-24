@@ -30,7 +30,7 @@ jobs:
             (async () => {
               const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
               const page = await browser.newPage();
-              const html = fs.readFileSync('resume.html', 'utf8');
+              const html = fs.readFileSync('index.html', 'utf8');
               await page.setContent(html, { waitUntil: 'networkidle0' });
               await page.pdf({ path: 'resume.pdf', format: 'A4' });
               await browser.close();
