@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/victorblinks/devops-cloud-professional-profile.git'
+                git branch: 'main', url: 'https://github.com/VickyOps-Tech/my-profile.git'
             }
         }
 
